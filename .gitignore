@@ -1,0 +1,28 @@
+# VS system
+.vs/
+*.VC.db
+*.VC.opendb
+
+# Build outputs
+x64/
+x86/
+**/x64/
+**/x86/
+
+# Intermediate files
+ipch/
+*.iobj
+*.ipdb
+
+# Debug/Release artifacts
+*.obj
+*.pch
+*.pdb
+*.ilk
+*.log
+*.recipe
+*.tlog
+
+# VS user settings
+*.user
+*.suo
