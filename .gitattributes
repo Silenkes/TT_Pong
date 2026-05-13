@@ -1,0 +1,17 @@
+# Normalize line endings
+* text=auto
+
+# Force LF for source files
+*.h text eol=lf
+*.cpp text eol=lf
+
+# Visual Studio files
+*.sln text eol=crlf
+*.vcxproj text eol=crlf
+*.filters text eol=crlf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.dll binary
+*.exe binary
