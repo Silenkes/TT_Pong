@@ -1,7 +1,8 @@
-#include <iostream>
+#include "Core/GameInstance.h"
 
 int main()
 {
-	std::cout << "Hello World!" << std::endl;
+	GameInstance GI;
+	GI.Init();
 	return 0;
 }
