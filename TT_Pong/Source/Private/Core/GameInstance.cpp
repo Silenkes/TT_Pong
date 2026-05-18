@@ -1,6 +1,7 @@
 #include "Core/GameInstance.h"
 #include "Entities/Paddle.h"
 #include "Entities/Ball.h"
+#include "Entities/Boundary.h"
 #include <iostream>
 
 GameInstance::GameInstance()
@@ -81,6 +82,11 @@ void GameInstance::CreateEntities()
 	PlayerPaddle = new Paddle(sf::Vector2f({ WindowSizeX / 8.f, WindowSizeY / 2.f }), sf::Color::Green, sf::Color::Magenta);
 	BotPaddle = new Paddle(sf::Vector2f({ WindowSizeX / 1.15f, WindowSizeY / 2.f }), sf::Color::Red, sf::Color::Yellow);
 	BallInstance = new Ball(sf::Vector2f({ WindowSizeX / 2.f, WindowSizeY / 2.f }), 15.f, sf::Color(125, 34, 112, 255));
+
+	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(0.f, 0.f), sf::Vector2f(WindowSizeX, 20.f), true, EBoundaryType::Top));
+	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(0.f, WindowSizeY - 20.f), sf::Vector2f(WindowSizeX, 20.f), true, EBoundaryType::Bottom));
+	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(0.f, 0.f), sf::Vector2f(20.f, WindowSizeY), true, EBoundaryType::Left));
+	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(WindowSizeX - 20.f, 0.f), sf::Vector2f(20.f, WindowSizeY), true, EBoundaryType::Right));
 }
 
 void GameInstance::HandleEvents()
@@ -123,6 +129,11 @@ void GameInstance::Render()
 
 	if (BallInstance)
 		Window.draw(BallInstance->GetShape());
+
+	if (!Boundaries.empty())
+		for (const auto& Boundary : Boundaries)
+			if (Boundary)
+				Window.draw(Boundary->GetShape());
 
 	Window.display();
 }

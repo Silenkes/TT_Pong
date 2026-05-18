@@ -30,6 +30,9 @@
     <ClCompile Include="Source\Private\Entities\Ball.cpp">
       <Filter>Source\Private</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\Entities\Boundary.cpp">
+      <Filter>Source\Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Public\Core\GameInstance.h">
@@ -39,6 +42,9 @@
       <Filter>Source\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\Entities\Ball.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Entities\Boundary.h">
       <Filter>Source\Public</Filter>
     </ClInclude>
   </ItemGroup>

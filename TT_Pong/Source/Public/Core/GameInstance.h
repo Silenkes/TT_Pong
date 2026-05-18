@@ -4,6 +4,7 @@
 
 class Paddle;
 class Ball;
+class Boundary;
 
 class GameInstance
 {
@@ -33,6 +34,8 @@ private:
     Paddle* PlayerPaddle = nullptr;
     Paddle* BotPaddle = nullptr;
 	Ball* BallInstance = nullptr;
+    
+    std::vector<std::unique_ptr<Boundary>> Boundaries;
 
     bool bInitialized = false;
     float WindowSizeY = 0.f;
