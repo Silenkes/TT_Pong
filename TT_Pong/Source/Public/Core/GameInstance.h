@@ -6,22 +6,36 @@ class Paddle;
 class Ball;
 class Boundary;
 
+enum class EGameState : uint8_t
+{
+    None,
+    Running,
+    PausedByUser,
+    PausedBetweenRounds,
+};
+
 class GameInstance
 {
 public:
     GameInstance();
+    ~GameInstance();
 
     void Tick(float DeltaTime);
     void Init();
     void CreateEntities();
+    void ResetRound();
 
-    ~GameInstance();
+    // * If pause is permanent (e.a., the game paused by user), Duration must be <= 0!!!
+    void Pause(EGameState NewGameState, float Duration);
+    void UnPause();
 
 private:
     void CreateBG();
 
     void SetBGSize();
     void HandleEvents();
+    void HandleIntersections();
+    void HandlePlayerInput(float DeltaTime);
     void Render();
 
 private:
@@ -30,14 +44,19 @@ private:
 
     std::unique_ptr<sf::Texture> BGTexture;
     std::unique_ptr<sf::Sprite> BGSprite;
+    std::unique_ptr<Paddle> PlayerPaddle;
+    std::unique_ptr<Paddle> BotPaddle;
+    std::unique_ptr<Ball> BallInstance;
 
-    Paddle* PlayerPaddle = nullptr;
-    Paddle* BotPaddle = nullptr;
-	Ball* BallInstance = nullptr;
-    
     std::vector<std::unique_ptr<Boundary>> Boundaries;
 
     bool bInitialized = false;
     float WindowSizeY = 0.f;
     float WindowSizeX = 0.f;
+    float PauseTimer = 0.f;
+    float PauseDuration = 0.f;
+    int PlayerScore = 0.f;
+    int BotScore = 0.f;
+
+    EGameState GameState = EGameState::None;
 };

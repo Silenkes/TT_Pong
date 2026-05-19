@@ -1,13 +1,15 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "Core/Entity.h"
 
-class Ball
+class Ball : public Entity
 {
 public:
-	Ball(const sf::Vector2f& StartPosition, float InRadius, const sf::Color& InColor);
+	Ball(const sf::Vector2f& Position, float InRadius, const sf::Color& InColor);
 
-	void Update(float DeltaTime);
+	virtual void Draw(sf::RenderWindow& Window) override;
+	virtual void Update(float DeltaTime) override;
+	virtual void Reset() override;
 	void BounceVertical();
 	void BounceHorizontal();
 

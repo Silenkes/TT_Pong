@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Private\Core\Entity.cpp" />
     <ClCompile Include="Source\Private\Core\GameInstance.cpp" />
     <ClCompile Include="Source\Private\Entities\Ball.cpp" />
     <ClCompile Include="Source\Private\Entities\Boundary.cpp" />
     <ClCompile Include="Source\Private\Entities\Paddle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Public\Core\Entity.h" />
     <ClInclude Include="Source\Public\Core\GameInstance.h" />
     <ClInclude Include="Source\Public\Entities\Ball.h" />
     <ClInclude Include="Source\Public\Entities\Boundary.h" />

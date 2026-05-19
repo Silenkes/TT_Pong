@@ -4,5 +4,13 @@ Boundary::Boundary(const sf::Vector2f& Position, const sf::Vector2f& Size, bool 
 {
 	Shape.setPosition(Position);
 	Shape.setSize(Size);
-	bVisible ? Shape.setFillColor(sf::Color(255, 255, 255, 255)) : Shape.setFillColor(sf::Color(255, 255, 255, 0));
+	bVisible ? Shape.setFillColor(DefaultColor) : Shape.setFillColor(sf::Color(255, 255, 255, 0));
+
+	StartPosition = Position;
+}
+
+void Boundary::Draw(sf::RenderWindow& Window)
+{
+	if (Window.isOpen())
+		Window.draw(Shape);
 }

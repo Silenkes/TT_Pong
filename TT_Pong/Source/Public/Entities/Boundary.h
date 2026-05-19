@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "Core/Entity.h"
 
 enum class EBoundaryType : uint8_t
 {
@@ -11,10 +11,12 @@ enum class EBoundaryType : uint8_t
 	Right,
 };
 
-class Boundary
+class Boundary : public Entity
 {
 public:
 	Boundary(const sf::Vector2f& Position, const sf::Vector2f& Size, bool bVisible, EBoundaryType InType);
+
+	virtual void Draw(sf::RenderWindow& Window) override;
 	const sf::RectangleShape& GetShape() const { return Shape; }
 	EBoundaryType GetType() const { return Type; }
 

@@ -1,9 +1,9 @@
 #include "Entities/Ball.h"
 #include <random>
 
-Ball::Ball(const sf::Vector2f& StartPosition, float InRadius, const sf::Color& InColor)
+Ball::Ball(const sf::Vector2f& Position, float InRadius, const sf::Color& InColor)
 {
-	Shape.setPosition(StartPosition);
+	Shape.setPosition(Position);
 	Shape.setRadius(InRadius);
 	Shape.setFillColor(InColor);
 	Shape.setOrigin({ InRadius, InRadius });
@@ -23,11 +23,24 @@ Ball::Ball(const sf::Vector2f& StartPosition, float InRadius, const sf::Color& I
 	// ------------------------------------------------------------|
 
 	Velocity = { RandomX, RandomY * RandomYMultiplier};
+	StartPosition = Position;
+}
+
+void Ball::Draw(sf::RenderWindow& Window)
+{
+	if (Window.isOpen())
+		Window.draw(Shape);
 }
 
 void Ball::Update(float DeltaTime)
 {
 	Shape.move(Velocity * MoveSpeed * DeltaTime);
+}
+
+void Ball::Reset()
+{
+	Shape.setPosition(StartPosition);
+	
 }
 
 void Ball::BounceVertical()

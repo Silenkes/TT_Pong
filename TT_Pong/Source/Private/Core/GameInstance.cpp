@@ -4,10 +4,8 @@
 #include "Entities/Boundary.h"
 #include <iostream>
 
-GameInstance::GameInstance()
-{
-
-}
+GameInstance::GameInstance() = default;
+GameInstance::~GameInstance() = default;
 
 void GameInstance::Init()
 {
@@ -20,6 +18,7 @@ void GameInstance::Init()
 
 	WindowSizeY = Window.getSize().y;
 	WindowSizeX = Window.getSize().x;
+	GameState = EGameState::Running;
 
 	CreateBG();
 	CreateEntities();
@@ -29,8 +28,9 @@ void GameInstance::Init()
 	{
 		float DeltaTime = DeltaClock.restart().asSeconds();
 
-		HandleEvents();
 		Tick(DeltaTime);
+		HandleEvents();
+		HandleIntersections();
 		Render();
 	}
 }
@@ -61,27 +61,9 @@ void GameInstance::SetBGSize()
 
 void GameInstance::CreateEntities()
 {
-	if (PlayerPaddle)
-	{
-		delete PlayerPaddle;
-		PlayerPaddle = nullptr;
-	}
-
-	if (BotPaddle)
-	{
-		delete BotPaddle;
-		BotPaddle = nullptr;
-	}
-
-	if (BallInstance)
-	{
-		delete BallInstance;
-		BallInstance = nullptr;
-	}
-	
-	PlayerPaddle = new Paddle(sf::Vector2f({ WindowSizeX / 8.f, WindowSizeY / 2.f }), sf::Color::Green, sf::Color::Magenta);
-	BotPaddle = new Paddle(sf::Vector2f({ WindowSizeX / 1.15f, WindowSizeY / 2.f }), sf::Color::Red, sf::Color::Yellow);
-	BallInstance = new Ball(sf::Vector2f({ WindowSizeX / 2.f, WindowSizeY / 2.f }), 15.f, sf::Color(125, 34, 112, 255));
+	PlayerPaddle = std::make_unique<Paddle>(sf::Vector2f(WindowSizeX / 8.f, WindowSizeY / 2), sf::Color::Green, sf::Color::Magenta);
+	BotPaddle = std::make_unique<Paddle>(sf::Vector2f(WindowSizeX / 1.15f, WindowSizeY / 2.f), sf::Color::Red, sf::Color::Yellow);
+	BallInstance = std::make_unique<Ball>(sf::Vector2f(WindowSizeX / 2.f, WindowSizeY / 2.f), 15.f, sf::Color(125, 34, 112, 255));
 
 	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(0.f, 0.f), sf::Vector2f(WindowSizeX, 20.f), true, EBoundaryType::Top));
 	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(0.f, WindowSizeY - 20.f), sf::Vector2f(WindowSizeX, 20.f), true, EBoundaryType::Bottom));
@@ -95,6 +77,106 @@ void GameInstance::HandleEvents()
 	{
 		if (Event->is<sf::Event::Closed>())
 			Window.close();
+
+		if (const auto* KeyPressed = Event->getIf<sf::Event::KeyPressed>())
+		{
+			if (KeyPressed->code == sf::Keyboard::Key::Escape)
+			{
+				if (GameState == EGameState::Running)
+					Pause(EGameState::PausedByUser, -1.f);
+
+				else if (GameState == EGameState::PausedByUser)
+					UnPause();
+			}
+		}
+	}
+}
+
+void GameInstance::HandleIntersections()
+{
+	if (!BallInstance || GameState != EGameState::Running)
+		return;
+
+	for (const auto& Boundary : Boundaries)
+	{
+		if (Boundary)
+		{
+			if (BallInstance->GetShape().getGlobalBounds().findIntersection(Boundary->GetShape().getGlobalBounds()))
+			{
+				switch (Boundary->GetType())
+				{
+				case EBoundaryType::None:
+					break;
+
+				case EBoundaryType::Top:
+				case EBoundaryType::Bottom:
+					BallInstance->BounceVertical();
+					break;
+
+				case EBoundaryType::Left:
+					BotScore += 1;
+					BallInstance->BounceHorizontal();
+					ResetRound();
+					break;
+
+				case EBoundaryType::Right:
+					PlayerScore += 1;
+					BallInstance->BounceHorizontal();
+					ResetRound();
+					break;
+
+				default:
+					break;
+				}
+			}
+
+			if (PlayerPaddle && PlayerPaddle->GetShape().getGlobalBounds().findIntersection(Boundary->GetShape().getGlobalBounds()))
+			{
+				switch (Boundary->GetType())
+				{
+				case EBoundaryType::None:
+					break;
+
+				case EBoundaryType::Top:
+					PlayerPaddle->BlockMovement(EMovementDirection::Up);
+					break;
+
+				case EBoundaryType::Bottom:
+					PlayerPaddle->BlockMovement(EMovementDirection::Down);
+					break;
+
+				default:
+					break;
+				}
+			}
+		}
+	}
+
+	if (PlayerPaddle && BallInstance->GetShape().getGlobalBounds().findIntersection(PlayerPaddle->GetShape().getGlobalBounds()))
+	{
+		BallInstance->BounceHorizontal();
+		PlayerPaddle->HandleHit();
+	}
+
+	if (BotPaddle && BallInstance->GetShape().getGlobalBounds().findIntersection(BotPaddle->GetShape().getGlobalBounds()))
+	{
+		BallInstance->BounceHorizontal();
+		BotPaddle->HandleHit();
+	}
+}
+
+void GameInstance::HandlePlayerInput(float DeltaTime)
+{
+	if (!PlayerPaddle)
+		return;
+
+	if (GameState == EGameState::Running)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+			PlayerPaddle->Move(DeltaTime, EMovementDirection::Up);
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+			PlayerPaddle->Move(DeltaTime, EMovementDirection::Down);
 	}
 }
 
@@ -103,15 +185,24 @@ void GameInstance::Tick(float DeltaTime)
 	if (!PlayerPaddle || !BotPaddle || !BallInstance)
 		return;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
-		PlayerPaddle->Move(DeltaTime, EMovementDirection::Up);
+	if (GameState == EGameState::Running)
+	{
+		HandlePlayerInput(DeltaTime);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
-		PlayerPaddle->Move(DeltaTime, EMovementDirection::Down);
+		PlayerPaddle->Update(DeltaTime);
+		BotPaddle->Update(DeltaTime);
+		BallInstance->Update(DeltaTime);
+	}
 
-	PlayerPaddle->Update(DeltaTime);
-	BotPaddle->Update(DeltaTime);
-	BallInstance->Update(DeltaTime);
+	else
+	{
+		PauseTimer += DeltaTime;
+
+		if (PauseDuration > 0 && PauseTimer >= PauseDuration)
+		{
+			UnPause();
+		}
+	}
 }
 
 void GameInstance::Render()
@@ -122,25 +213,48 @@ void GameInstance::Render()
 		Window.draw(*BGSprite);
 
 	if (PlayerPaddle)
-		Window.draw(PlayerPaddle->GetShape());
+		PlayerPaddle->Draw(Window);
 
 	if (BotPaddle)
-		Window.draw(BotPaddle->GetShape());
+		BotPaddle->Draw(Window);
 
 	if (BallInstance)
-		Window.draw(BallInstance->GetShape());
+		BallInstance->Draw(Window);
 
 	if (!Boundaries.empty())
 		for (const auto& Boundary : Boundaries)
 			if (Boundary)
-				Window.draw(Boundary->GetShape());
+				Boundary->Draw(Window);
 
 	Window.display();
 }
 
-GameInstance::~GameInstance()
+void GameInstance::ResetRound()
 {
-	delete PlayerPaddle;
-	delete BotPaddle;
-	delete BallInstance;
+	if (GameState == EGameState::Running)
+	{
+		PlayerPaddle->Reset();
+		BallInstance->Reset();
+		Pause(EGameState::PausedBetweenRounds, 2.f);
+	}
+}
+
+void GameInstance::Pause(EGameState NewGameState, float Duration)
+{
+	if (GameState == NewGameState)
+		return;
+
+	GameState = NewGameState;
+	PauseTimer = 0.f;
+	PauseDuration = Duration;
+}
+
+void GameInstance::UnPause()
+{
+	if (GameState == EGameState::Running)
+		return;
+
+	GameState = EGameState::Running;
+	PauseTimer = 0.f;
+	PauseDuration = 0.f;
 }
