@@ -23,6 +23,7 @@ void GameInstance::Init()
 	CreateBG();
 	CreateEntities();
 	SetBGSize();
+	CreateUI();
 
 	while (Window.isOpen())
 	{
@@ -47,6 +48,43 @@ void GameInstance::CreateBG()
 	}
 
 	BGSprite = std::make_unique<sf::Sprite>(*BGTexture);
+}
+
+void GameInstance::CreateUI()
+{
+	TextFont = std::make_unique<sf::Font>();
+
+	if (!TextFont->openFromFile("Assets/Fonts/Chomage.ttf"))
+	{
+		std::cout << "Chomage font not found!" << std::endl;
+		return;
+	}
+
+	PlayerScoreText = std::make_unique<sf::Text>(*TextFont);
+	BotScoreText = std::make_unique<sf::Text>(*TextFont);
+	PauseText = std::make_unique<sf::Text>(*TextFont);
+
+	PlayerScoreText->setFont(*TextFont);
+	PlayerScoreText->setCharacterSize(56);
+	PlayerScoreText->setFillColor(sf::Color::White);
+	PlayerScoreText->setOutlineThickness(5.f);
+	PlayerScoreText->setPosition({ WindowSizeX / 2 - 400, WindowSizeY / 2 - 300 });
+	PlayerScoreText->setString(std::to_string(PlayerScore));
+
+	BotScoreText->setFont(*TextFont);
+	BotScoreText->setCharacterSize(56);
+	BotScoreText->setFillColor(sf::Color::White);
+	BotScoreText->setOutlineThickness(5.f);
+	BotScoreText->setPosition({ WindowSizeX / 2 + 400, WindowSizeY / 2 - 300 });
+	BotScoreText->setString(std::to_string(BotScore));
+
+	PauseText->setFont(*TextFont);
+	PauseText->setCharacterSize(120);
+	PauseText->setFillColor(sf::Color::Yellow);
+	PauseText->setOutlineThickness(10.f);
+	PauseText->setLineAlignment(sf::Text::LineAlignment::Center);
+	PauseText->setPosition({ WindowSizeX / 2, WindowSizeY / 2 - 150.f});
+	PauseText->setString("PAUSE");
 }
 
 void GameInstance::SetBGSize()
@@ -212,6 +250,15 @@ void GameInstance::Render()
 	if (BGSprite)
 		Window.draw(*BGSprite);
 
+	if (PlayerScoreText)
+		Window.draw(*PlayerScoreText);
+
+	if (BotScoreText)
+		Window.draw(*BotScoreText);
+
+	if (PauseText && GameState == EGameState::PausedByUser)
+		Window.draw(*PauseText);
+
 	if (PlayerPaddle)
 		PlayerPaddle->Draw(Window);
 
@@ -233,6 +280,12 @@ void GameInstance::ResetRound()
 {
 	if (GameState == EGameState::Running)
 	{
+		if (BotScoreText)
+			BotScoreText->setString(std::to_string(BotScore));
+
+		if (PlayerScoreText)
+			PlayerScoreText->setString(std::to_string(PlayerScore));
+
 		PlayerPaddle->Reset();
 		BallInstance->Reset();
 		Pause(EGameState::PausedBetweenRounds, 2.f);

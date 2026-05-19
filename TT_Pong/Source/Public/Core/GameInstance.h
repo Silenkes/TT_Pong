@@ -31,7 +31,7 @@ public:
 
 private:
     void CreateBG();
-
+    void CreateUI();
     void SetBGSize();
     void HandleEvents();
     void HandleIntersections();
@@ -44,6 +44,10 @@ private:
 
     std::unique_ptr<sf::Texture> BGTexture;
     std::unique_ptr<sf::Sprite> BGSprite;
+    std::unique_ptr<sf::Font> TextFont;
+    std::unique_ptr<sf::Text> PlayerScoreText;
+    std::unique_ptr<sf::Text> BotScoreText;
+    std::unique_ptr<sf::Text> PauseText;
     std::unique_ptr<Paddle> PlayerPaddle;
     std::unique_ptr<Paddle> BotPaddle;
     std::unique_ptr<Ball> BallInstance;
@@ -55,8 +59,8 @@ private:
     float WindowSizeX = 0.f;
     float PauseTimer = 0.f;
     float PauseDuration = 0.f;
-    int PlayerScore = 0.f;
-    int BotScore = 0.f;
+    int PlayerScore = 0;
+    int BotScore = 0;
 
     EGameState GameState = EGameState::None;
 };
