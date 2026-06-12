@@ -12,7 +12,7 @@ enum class EMovementDirection : uint8_t
 class Paddle : public Entity
 {
 public:
-	Paddle(const sf::Vector2f& Position, const sf::Color& InDefaultColor, const sf::Color& InHitFlashColor);
+	Paddle(const sf::Vector2f& Position, const sf::Color& InDefaultColor, const sf::Color& InHitFlashColor, float Speed);
 
 	virtual void Draw(sf::RenderWindow& Window) override;
 	virtual void Update(float DeltaTime) override;

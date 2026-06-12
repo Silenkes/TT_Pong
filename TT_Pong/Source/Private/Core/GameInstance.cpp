@@ -4,6 +4,7 @@
 #include "Entities/Boundary.h"
 #include "Audio/SoundBase.h"
 #include <iostream>
+#include <random>
 
 GameInstance::GameInstance() = default;
 GameInstance::~GameInstance() = default;
@@ -111,8 +112,8 @@ void GameInstance::SetBGSize()
 
 void GameInstance::CreateEntities()
 {
-	PlayerPaddle = std::make_unique<Paddle>(sf::Vector2f(WindowSizeX / 8.f, WindowSizeY / 2), sf::Color::Green, sf::Color::Magenta);
-	BotPaddle = std::make_unique<Paddle>(sf::Vector2f(WindowSizeX / 1.15f, WindowSizeY / 2.f), sf::Color::Red, sf::Color::Yellow);
+	PlayerPaddle = std::make_unique<Paddle>(sf::Vector2f(WindowSizeX / 8.f, WindowSizeY / 2), sf::Color::Green, sf::Color::Magenta, 1000.f);
+	BotPaddle = std::make_unique<Paddle>(sf::Vector2f(WindowSizeX / 1.15f, WindowSizeY / 2.f), sf::Color::Red, sf::Color::Yellow, 750.f);
 	BallInstance = std::make_unique<Ball>(sf::Vector2f(WindowSizeX / 2.f, WindowSizeY / 2.f), 15.f, sf::Color(125, 34, 112, 255));
 
 	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(0.f, 0.f), sf::Vector2f(WindowSizeX, 20.f), true, EBoundaryType::Top));
@@ -151,6 +152,7 @@ void GameInstance::HandleIntersections()
 	{
 		if (Boundary)
 		{
+			// Ball intersection with boundary
 			if (BallInstance->GetShape().getGlobalBounds().findIntersection(Boundary->GetShape().getGlobalBounds()))
 			{
 				switch (Boundary->GetType())
@@ -183,7 +185,16 @@ void GameInstance::HandleIntersections()
 				}
 			}
 
-			if (PlayerPaddle && PlayerPaddle->GetShape().getGlobalBounds().findIntersection(Boundary->GetShape().getGlobalBounds()))
+			// Paddle intersection with boundary
+			Paddle* OverlappedPaddle = nullptr;
+
+			if (PlayerPaddle && Boundary->GetShape().getGlobalBounds().findIntersection(PlayerPaddle->GetShape().getGlobalBounds()))
+				OverlappedPaddle = PlayerPaddle.get();
+
+			else if (BotPaddle && Boundary->GetShape().getGlobalBounds().findIntersection(BotPaddle->GetShape().getGlobalBounds()))
+				OverlappedPaddle = BotPaddle.get();
+
+			if (OverlappedPaddle)
 			{
 				switch (Boundary->GetType())
 				{
@@ -191,11 +202,11 @@ void GameInstance::HandleIntersections()
 					break;
 
 				case EBoundaryType::Top:
-					PlayerPaddle->BlockMovement(EMovementDirection::Up);
+					OverlappedPaddle->BlockMovement(EMovementDirection::Up);
 					break;
 
 				case EBoundaryType::Bottom:
-					PlayerPaddle->BlockMovement(EMovementDirection::Down);
+					OverlappedPaddle->BlockMovement(EMovementDirection::Down);
 					break;
 
 				default:
@@ -235,6 +246,29 @@ void GameInstance::HandlePlayerInput(float DeltaTime)
 	}
 }
 
+void GameInstance::HandleBotMovement(float DeltaTime)
+{
+	if (!BotPaddle || !BallInstance)
+		return;
+
+	std::random_device RandomDevice;
+	std::mt19937 Generator(RandomDevice());
+	std::uniform_int_distribution<int> Distribution(-100, 100);
+
+	const float BallY = BallInstance->GetShape().getPosition().y;
+	const float BotY = BotPaddle->GetShape().getPosition().y;
+	const float Error = Distribution(Generator);
+
+	if (BallInstance->GetShape().getPosition().x > WindowSizeX / 2)
+	{
+		if (BallY + Error < BotY - 30)
+			BotPaddle->Move(DeltaTime, EMovementDirection::Up);
+
+		else if (BallY + Error > BotY + 30)
+			BotPaddle->Move(DeltaTime, EMovementDirection::Down);
+	}
+}
+
 void GameInstance::Tick(float DeltaTime)
 {
 	if (!PlayerPaddle || !BotPaddle || !BallInstance)
@@ -243,6 +277,7 @@ void GameInstance::Tick(float DeltaTime)
 	if (GameState == EGameState::Running)
 	{
 		HandlePlayerInput(DeltaTime);
+		HandleBotMovement(DeltaTime);
 
 		PlayerPaddle->Update(DeltaTime);
 		BotPaddle->Update(DeltaTime);

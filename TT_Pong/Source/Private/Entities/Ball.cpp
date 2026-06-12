@@ -41,6 +41,19 @@ void Ball::Reset()
 {
 	Shape.setPosition(StartPosition);
 	
+	// ----- Calculating random ball velocity direction -----------|
+
+	std::random_device RandomDevice;
+	std::mt19937 Generator(RandomDevice());
+	std::uniform_int_distribution<int> Distribution(0, 1);
+
+	const float RandomX = Distribution(Generator) == 0 ? -1.f : 1.f;
+	const float RandomY = Distribution(Generator) == 0 ? -1.f : 1.f;
+	const float RandomYMultiplier = Distribution(Generator) == 0 ? 0.5f : 1.5f;
+
+	// ------------------------------------------------------------|
+
+	Velocity = { RandomX, RandomY * RandomYMultiplier };
 }
 
 void Ball::BounceVertical()

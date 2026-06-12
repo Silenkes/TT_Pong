@@ -45,6 +45,7 @@ private:
     void HandleEvents();
     void HandleIntersections();
     void HandlePlayerInput(float DeltaTime);
+	void HandleBotMovement(float DeltaTime);
     void Render();
     void SetPlayerControls();
     sf::Keyboard::Key HandlePlayerBinding();

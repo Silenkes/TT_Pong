@@ -1,6 +1,6 @@
 #include "Entities/Paddle.h"
 
-Paddle::Paddle(const sf::Vector2f& Position, const sf::Color& InDefaultColor, const sf::Color& InHitFlashColor)
+Paddle::Paddle(const sf::Vector2f& Position, const sf::Color& InDefaultColor, const sf::Color& InHitFlashColor, float Speed)
 {
 	Shape.setSize({ 20.f, 80.f });
 	Shape.setOrigin(Shape.getSize() / 2.f);
@@ -12,6 +12,7 @@ Paddle::Paddle(const sf::Vector2f& Position, const sf::Color& InDefaultColor, co
 	DefaultColor = InDefaultColor;
 	HitFlashColor = InHitFlashColor;
 	StartPosition = Position;
+	MoveSpeed = Speed;
 }
 
 void Paddle::Draw(sf::RenderWindow& Window)
