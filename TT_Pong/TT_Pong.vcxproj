@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Private\Audio\SoundBase.cpp" />
     <ClCompile Include="Source\Private\Core\Entity.cpp" />
     <ClCompile Include="Source\Private\Core\GameInstance.cpp" />
     <ClCompile Include="Source\Private\Entities\Ball.cpp" />
@@ -27,11 +28,233 @@
     <ClCompile Include="Source\Private\Entities\Paddle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="External\SFML\include\libssh2.h" />
+    <ClInclude Include="External\SFML\include\libssh2_publickey.h" />
+    <ClInclude Include="External\SFML\include\libssh2_sftp.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\aes.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\aria.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\asn1.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\asn1write.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\base64.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\bignum.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\block_cipher.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\build_info.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\camellia.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\ccm.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\chacha20.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\chachapoly.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\check_config.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\cipher.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\cmac.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\compat-2.x.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\config_adjust_legacy_crypto.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\config_adjust_legacy_from_psa.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\config_adjust_psa_from_legacy.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\config_adjust_psa_superset_legacy.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\config_adjust_ssl.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\config_adjust_x509.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\config_psa.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\constant_time.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\ctr_drbg.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\debug.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\des.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\dhm.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\ecdh.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\ecdsa.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\ecjpake.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\ecp.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\entropy.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\error.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\gcm.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\hkdf.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\hmac_drbg.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\lms.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\mbedtls_config.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\md.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\md5.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\memory_buffer_alloc.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\net_sockets.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\nist_kw.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\oid.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\pem.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\pk.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\pkcs12.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\pkcs5.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\pkcs7.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\platform.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\platform_time.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\platform_util.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\poly1305.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\private_access.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\psa_util.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\ripemd160.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\rsa.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\sha1.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\sha256.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\sha3.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\sha512.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\ssl.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\ssl_cache.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\ssl_ciphersuites.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\ssl_cookie.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\ssl_ticket.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\threading.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\threading_alt.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\timing.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\version.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\x509.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\x509_crl.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\x509_crt.h" />
+    <ClInclude Include="External\SFML\include\mbedtls\x509_csr.h" />
+    <ClInclude Include="External\SFML\include\psa\build_info.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_adjust_auto_enabled.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_adjust_config_dependencies.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_adjust_config_key_pair_types.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_adjust_config_synonyms.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_builtin_composites.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_builtin_key_derivation.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_builtin_primitives.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_compat.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_config.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_driver_common.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_driver_contexts_composites.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_driver_contexts_key_derivation.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_driver_contexts_primitives.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_extra.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_legacy.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_platform.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_se_driver.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_sizes.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_struct.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_types.h" />
+    <ClInclude Include="External\SFML\include\psa\crypto_values.h" />
+    <ClInclude Include="External\SFML\include\SFML\Audio.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\AudioResource.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\Export.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\InputSoundFile.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\Listener.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\Music.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\OutputSoundFile.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\PlaybackDevice.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\Sound.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundBuffer.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundBufferRecorder.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundChannel.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundFileFactory.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundFileReader.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundFileWriter.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundRecorder.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundSource.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundStream.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Config.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\GpuPreference.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\BlendMode.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\CircleShape.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Color.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\ConvexShape.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\CoordinateType.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Drawable.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Export.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Font.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Glsl.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Glyph.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Image.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\PrimitiveType.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Rect.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\RectangleShape.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\RenderStates.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\RenderTarget.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\RenderTexture.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\RenderWindow.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Shader.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Shape.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Sprite.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\StencilMode.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Text.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Texture.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Transform.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Transformable.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Vertex.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\VertexArray.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\VertexBuffer.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Graphics\View.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Main.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network\Dns.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network\Export.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network\Ftp.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network\Http.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network\IpAddress.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network\Packet.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network\Sftp.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network\Socket.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network\SocketHandle.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network\SocketSelector.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network\TcpListener.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network\TcpSocket.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Network\UdpSocket.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\OpenGL.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\Angle.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\Clock.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\Err.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\Exception.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\Export.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\FileInputStream.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\InputStream.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\MemoryInputStream.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\NativeActivity.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\Sleep.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\String.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\SuspendAwareClock.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\Time.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\TimeoutWithPredicate.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\Utf.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\Vector2.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\Vector3.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\System\Version.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\Clipboard.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\Context.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\ContextSettings.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\Cursor.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\Event.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\Export.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\GlResource.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\Joystick.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\Keyboard.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\Mouse.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\Sensor.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\Touch.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\VideoMode.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\Vulkan.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\Window.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\WindowBase.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\WindowEnums.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\Window\WindowHandle.hpp" />
+    <ClInclude Include="Source\Public\Audio\SoundBase.h" />
     <ClInclude Include="Source\Public\Core\Entity.h" />
     <ClInclude Include="Source\Public\Core\GameInstance.h" />
     <ClInclude Include="Source\Public\Entities\Ball.h" />
     <ClInclude Include="Source\Public\Entities\Boundary.h" />
     <ClInclude Include="Source\Public\Entities\Paddle.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="External\SFML\include\SFML\Audio\SoundFileFactory.inl" />
+    <None Include="External\SFML\include\SFML\Graphics\Color.inl" />
+    <None Include="External\SFML\include\SFML\Graphics\Glsl.inl" />
+    <None Include="External\SFML\include\SFML\Graphics\Rect.inl" />
+    <None Include="External\SFML\include\SFML\Graphics\Transform.inl" />
+    <None Include="External\SFML\include\SFML\System\Angle.inl" />
+    <None Include="External\SFML\include\SFML\System\String.inl" />
+    <None Include="External\SFML\include\SFML\System\Time.inl" />
+    <None Include="External\SFML\include\SFML\System\Utf.inl" />
+    <None Include="External\SFML\include\SFML\System\Vector2.inl" />
+    <None Include="External\SFML\include\SFML\System\Vector3.inl" />
+    <None Include="External\SFML\include\SFML\Window\Event.inl" />
+    <None Include="External\SFML\include\SFML\Window\WindowBase.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -126,7 +349,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)External\SFML\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y /D "$(ProjectDir)External\SFML\bin\*.dll" "$(OutDir)"</Command>
@@ -147,7 +370,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)External\SFML\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;sfml-audio.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y /D "$(ProjectDir)External\SFML\bin\*.dll" "$(OutDir)"</Command>

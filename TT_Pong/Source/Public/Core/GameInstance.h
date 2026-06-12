@@ -5,6 +5,7 @@
 class Paddle;
 class Ball;
 class Boundary;
+class SoundBase;
 
 enum class EGameState : uint8_t
 {
@@ -12,6 +13,14 @@ enum class EGameState : uint8_t
     Running,
     PausedByUser,
     PausedBetweenRounds,
+};
+
+enum class EPlayerInputs : uint8_t
+{
+    None,
+    MoveUp,
+    MoveDown,
+    Pause,
 };
 
 class GameInstance
@@ -37,20 +46,24 @@ private:
     void HandleIntersections();
     void HandlePlayerInput(float DeltaTime);
     void Render();
+    void SetPlayerControls();
+    sf::Keyboard::Key HandlePlayerBinding();
 
 private:
     sf::RenderWindow Window;
     sf::Clock DeltaClock;
-
+    
     std::unique_ptr<sf::Texture> BGTexture;
     std::unique_ptr<sf::Sprite> BGSprite;
     std::unique_ptr<sf::Font> TextFont;
     std::unique_ptr<sf::Text> PlayerScoreText;
     std::unique_ptr<sf::Text> BotScoreText;
     std::unique_ptr<sf::Text> PauseText;
+	std::unique_ptr<sf::Text> BindActionText;
     std::unique_ptr<Paddle> PlayerPaddle;
     std::unique_ptr<Paddle> BotPaddle;
     std::unique_ptr<Ball> BallInstance;
+    std::unique_ptr<SoundBase> SoundSystem;
 
     std::vector<std::unique_ptr<Boundary>> Boundaries;
 
@@ -63,4 +76,5 @@ private:
     int BotScore = 0;
 
     EGameState GameState = EGameState::None;
+	std::unordered_map<EPlayerInputs, sf::Keyboard::Key> PlayerInputMapping;
 };

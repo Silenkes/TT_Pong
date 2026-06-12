@@ -36,6 +36,9 @@
     <ClCompile Include="Source\Private\Core\Entity.cpp">
       <Filter>Source\Private</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\Audio\SoundBase.cpp">
+      <Filter>Source\Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Public\Core\GameInstance.h">
@@ -53,5 +56,667 @@
     <ClInclude Include="Source\Public\Core\Entity.h">
       <Filter>Source\Public</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\Audio\SoundBase.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\aes.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\aria.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\asn1.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\asn1write.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\base64.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\bignum.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\block_cipher.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\build_info.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\camellia.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\ccm.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\chacha20.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\chachapoly.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\check_config.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\cipher.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\cmac.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\compat-2.x.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\config_adjust_legacy_crypto.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\config_adjust_legacy_from_psa.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\config_adjust_psa_from_legacy.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\config_adjust_psa_superset_legacy.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\config_adjust_ssl.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\config_adjust_x509.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\config_psa.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\constant_time.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\ctr_drbg.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\debug.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\des.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\dhm.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\ecdh.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\ecdsa.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\ecjpake.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\ecp.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\entropy.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\error.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\gcm.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\hkdf.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\hmac_drbg.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\lms.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\mbedtls_config.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\md.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\md5.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\memory_buffer_alloc.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\net_sockets.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\nist_kw.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\oid.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\pem.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\pk.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\pkcs5.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\pkcs7.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\pkcs12.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\platform.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\platform_time.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\platform_util.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\poly1305.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\private_access.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\psa_util.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\ripemd160.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\rsa.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\sha1.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\sha3.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\sha256.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\sha512.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\ssl.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\ssl_cache.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\ssl_ciphersuites.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\ssl_cookie.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\ssl_ticket.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\threading.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\threading_alt.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\timing.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\version.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\x509.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\x509_crl.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\x509_crt.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\mbedtls\x509_csr.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\build_info.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_adjust_auto_enabled.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_adjust_config_dependencies.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_adjust_config_key_pair_types.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_adjust_config_synonyms.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_builtin_composites.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_builtin_key_derivation.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_builtin_primitives.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_compat.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_config.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_driver_common.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_driver_contexts_composites.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_driver_contexts_key_derivation.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_driver_contexts_primitives.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_extra.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_legacy.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_platform.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_se_driver.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_sizes.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_struct.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_types.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\psa\crypto_values.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\AudioResource.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\Export.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\InputSoundFile.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\Listener.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\Music.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\OutputSoundFile.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\PlaybackDevice.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\Sound.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundBuffer.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundBufferRecorder.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundChannel.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundFileFactory.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundFileReader.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundFileWriter.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundRecorder.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundSource.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio\SoundStream.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\BlendMode.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\CircleShape.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Color.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\ConvexShape.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\CoordinateType.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Drawable.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Export.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Font.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Glsl.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Glyph.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Image.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\PrimitiveType.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Rect.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\RectangleShape.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\RenderStates.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\RenderTarget.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\RenderTexture.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\RenderWindow.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Shader.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Shape.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Sprite.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\StencilMode.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Text.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Texture.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Transform.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Transformable.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\Vertex.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\VertexArray.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\VertexBuffer.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics\View.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network\Dns.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network\Export.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network\Ftp.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network\Http.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network\IpAddress.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network\Packet.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network\Sftp.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network\Socket.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network\SocketHandle.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network\SocketSelector.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network\TcpListener.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network\TcpSocket.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network\UdpSocket.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\Angle.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\Clock.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\Err.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\Exception.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\Export.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\FileInputStream.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\InputStream.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\MemoryInputStream.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\NativeActivity.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\Sleep.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\String.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\SuspendAwareClock.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\Time.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\TimeoutWithPredicate.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\Utf.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\Vector2.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\Vector3.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System\Version.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\Clipboard.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\Context.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\ContextSettings.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\Cursor.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\Event.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\Export.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\GlResource.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\Joystick.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\Keyboard.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\Mouse.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\Sensor.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\Touch.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\VideoMode.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\Vulkan.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\Window.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\WindowBase.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\WindowEnums.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window\WindowHandle.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Audio.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Config.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\GpuPreference.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Graphics.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Main.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Network.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\OpenGL.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\System.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\Window.hpp">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\libssh2.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\libssh2_publickey.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\libssh2_sftp.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="External\SFML\include\SFML\Audio\SoundFileFactory.inl">
+      <Filter>Source\Public</Filter>
+    </None>
+    <None Include="External\SFML\include\SFML\Graphics\Color.inl">
+      <Filter>Source\Public</Filter>
+    </None>
+    <None Include="External\SFML\include\SFML\Graphics\Glsl.inl">
+      <Filter>Source\Public</Filter>
+    </None>
+    <None Include="External\SFML\include\SFML\Graphics\Rect.inl">
+      <Filter>Source\Public</Filter>
+    </None>
+    <None Include="External\SFML\include\SFML\Graphics\Transform.inl">
+      <Filter>Source\Public</Filter>
+    </None>
+    <None Include="External\SFML\include\SFML\System\Angle.inl">
+      <Filter>Source\Public</Filter>
+    </None>
+    <None Include="External\SFML\include\SFML\System\String.inl">
+      <Filter>Source\Public</Filter>
+    </None>
+    <None Include="External\SFML\include\SFML\System\Time.inl">
+      <Filter>Source\Public</Filter>
+    </None>
+    <None Include="External\SFML\include\SFML\System\Utf.inl">
+      <Filter>Source\Public</Filter>
+    </None>
+    <None Include="External\SFML\include\SFML\System\Vector2.inl">
+      <Filter>Source\Public</Filter>
+    </None>
+    <None Include="External\SFML\include\SFML\System\Vector3.inl">
+      <Filter>Source\Public</Filter>
+    </None>
+    <None Include="External\SFML\include\SFML\Window\Event.inl">
+      <Filter>Source\Public</Filter>
+    </None>
+    <None Include="External\SFML\include\SFML\Window\WindowBase.inl">
+      <Filter>Source\Public</Filter>
+    </None>
   </ItemGroup>
 </Project>

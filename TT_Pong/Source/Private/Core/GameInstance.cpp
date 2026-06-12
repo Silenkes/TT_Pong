@@ -2,6 +2,7 @@
 #include "Entities/Paddle.h"
 #include "Entities/Ball.h"
 #include "Entities/Boundary.h"
+#include "Audio/SoundBase.h"
 #include <iostream>
 
 GameInstance::GameInstance() = default;
@@ -14,16 +15,18 @@ void GameInstance::Init()
 
 	bInitialized = true;
 
-	Window.create(sf::VideoMode({ 1280, 720 }), "UnrealPongine_Haponov");
+	Window.create(sf::VideoMode({ 1280, 720 }), "UnrealPongine");
 
 	WindowSizeY = Window.getSize().y;
 	WindowSizeX = Window.getSize().x;
-	GameState = EGameState::Running;
-
+	GameState = EGameState::PausedByUser;
+	
 	CreateBG();
 	CreateEntities();
 	SetBGSize();
 	CreateUI();
+	SetPlayerControls();
+	SoundSystem = std::make_unique<SoundBase>();
 
 	while (Window.isOpen())
 	{
@@ -63,6 +66,7 @@ void GameInstance::CreateUI()
 	PlayerScoreText = std::make_unique<sf::Text>(*TextFont);
 	BotScoreText = std::make_unique<sf::Text>(*TextFont);
 	PauseText = std::make_unique<sf::Text>(*TextFont);
+	BindActionText = std::make_unique<sf::Text>(*TextFont);
 
 	PlayerScoreText->setFont(*TextFont);
 	PlayerScoreText->setCharacterSize(56);
@@ -85,6 +89,14 @@ void GameInstance::CreateUI()
 	PauseText->setLineAlignment(sf::Text::LineAlignment::Center);
 	PauseText->setPosition({ WindowSizeX / 2, WindowSizeY / 2 - 150.f});
 	PauseText->setString("PAUSE");
+
+	BindActionText->setFont(*TextFont);
+	BindActionText->setCharacterSize(72);
+	BindActionText->setFillColor(sf::Color::Cyan);
+	BindActionText->setOutlineThickness(7.f);
+	BindActionText->setLineAlignment(sf::Text::LineAlignment::Center);
+	BindActionText->setPosition({ WindowSizeX / 2, WindowSizeY / 2 + 230 });
+	BindActionText->setString("Bindings");
 }
 
 void GameInstance::SetBGSize()
@@ -118,7 +130,7 @@ void GameInstance::HandleEvents()
 
 		if (const auto* KeyPressed = Event->getIf<sf::Event::KeyPressed>())
 		{
-			if (KeyPressed->code == sf::Keyboard::Key::Escape)
+			if (KeyPressed->code == PlayerInputMapping[EPlayerInputs::Pause])
 			{
 				if (GameState == EGameState::Running)
 					Pause(EGameState::PausedByUser, -1.f);
@@ -149,17 +161,20 @@ void GameInstance::HandleIntersections()
 				case EBoundaryType::Top:
 				case EBoundaryType::Bottom:
 					BallInstance->BounceVertical();
+					SoundSystem->Play(ESoundType::BoundaryHit);
 					break;
 
 				case EBoundaryType::Left:
 					BotScore += 1;
 					BallInstance->BounceHorizontal();
+					SoundSystem->Play(ESoundType::BotGoal);
 					ResetRound();
 					break;
 
 				case EBoundaryType::Right:
 					PlayerScore += 1;
 					BallInstance->BounceHorizontal();
+					SoundSystem->Play(ESoundType::PlayerGoal);
 					ResetRound();
 					break;
 
@@ -193,12 +208,14 @@ void GameInstance::HandleIntersections()
 	if (PlayerPaddle && BallInstance->GetShape().getGlobalBounds().findIntersection(PlayerPaddle->GetShape().getGlobalBounds()))
 	{
 		BallInstance->BounceHorizontal();
+		SoundSystem->Play(ESoundType::PlayerHit);
 		PlayerPaddle->HandleHit();
 	}
 
 	if (BotPaddle && BallInstance->GetShape().getGlobalBounds().findIntersection(BotPaddle->GetShape().getGlobalBounds()))
 	{
 		BallInstance->BounceHorizontal();
+		SoundSystem->Play(ESoundType::BotHit);
 		BotPaddle->HandleHit();
 	}
 }
@@ -210,10 +227,10 @@ void GameInstance::HandlePlayerInput(float DeltaTime)
 
 	if (GameState == EGameState::Running)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+		if (sf::Keyboard::isKeyPressed(PlayerInputMapping[EPlayerInputs::MoveUp]))
 			PlayerPaddle->Move(DeltaTime, EMovementDirection::Up);
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+		if (sf::Keyboard::isKeyPressed(PlayerInputMapping[EPlayerInputs::MoveDown]))
 			PlayerPaddle->Move(DeltaTime, EMovementDirection::Down);
 	}
 }
@@ -256,6 +273,9 @@ void GameInstance::Render()
 	if (BotScoreText)
 		Window.draw(*BotScoreText);
 
+	if (BindActionText)
+		Window.draw(*BindActionText);
+
 	if (PauseText && GameState == EGameState::PausedByUser)
 		Window.draw(*PauseText);
 
@@ -274,6 +294,41 @@ void GameInstance::Render()
 				Boundary->Draw(Window);
 
 	Window.display();
+}
+
+void GameInstance::SetPlayerControls()
+{
+	BindActionText->setString("Press a key to bind: Move Up");
+	PlayerInputMapping[EPlayerInputs::MoveUp] = HandlePlayerBinding();
+
+	BindActionText->setString("Press a key to bind: Move Down");
+	PlayerInputMapping[EPlayerInputs::MoveDown] = HandlePlayerBinding();
+
+	BindActionText->setString("Press a key to bind: Pause");
+	PlayerInputMapping[EPlayerInputs::Pause] = HandlePlayerBinding();
+
+	BindActionText.reset();
+}
+
+sf::Keyboard::Key GameInstance::HandlePlayerBinding()
+{
+	while (Window.isOpen())
+	{
+		Render();
+
+		while (const auto Event = Window.pollEvent())
+		{
+			if (Event->is<sf::Event::Closed>())
+				Window.close();
+
+			if (const auto* KeyPressed = Event->getIf<sf::Event::KeyPressed>())
+			{
+				return KeyPressed->code;
+			}
+		}
+	}
+
+	return sf::Keyboard::Key::Unknown;
 }
 
 void GameInstance::ResetRound()
