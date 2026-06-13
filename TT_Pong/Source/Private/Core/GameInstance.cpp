@@ -116,10 +116,10 @@ void GameInstance::CreateEntities()
 	BotPaddle = std::make_unique<Paddle>(sf::Vector2f(WindowSizeX / 1.15f, WindowSizeY / 2.f), sf::Color::Red, sf::Color::Yellow, 750.f);
 	BallInstance = std::make_unique<Ball>(sf::Vector2f(WindowSizeX / 2.f, WindowSizeY / 2.f), 15.f, sf::Color(125, 34, 112, 255));
 
-	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(0.f, 0.f), sf::Vector2f(WindowSizeX, 20.f), true, EBoundaryType::Top));
-	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(0.f, WindowSizeY - 20.f), sf::Vector2f(WindowSizeX, 20.f), true, EBoundaryType::Bottom));
-	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(0.f, 0.f), sf::Vector2f(20.f, WindowSizeY), true, EBoundaryType::Left));
-	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(WindowSizeX - 20.f, 0.f), sf::Vector2f(20.f, WindowSizeY), true, EBoundaryType::Right));
+	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(0.f, 0.f), sf::Vector2f(WindowSizeX, 20.f), false, EBoundaryType::Top));
+	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(0.f, WindowSizeY - 20.f), sf::Vector2f(WindowSizeX, 20.f), false, EBoundaryType::Bottom));
+	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(0.f, 0.f), sf::Vector2f(20.f, WindowSizeY), false, EBoundaryType::Left));
+	Boundaries.push_back(std::make_unique<Boundary>(sf::Vector2f(WindowSizeX - 20.f, 0.f), sf::Vector2f(20.f, WindowSizeY), false, EBoundaryType::Right));
 }
 
 void GameInstance::HandleEvents()
@@ -261,10 +261,10 @@ void GameInstance::HandleBotMovement(float DeltaTime)
 
 	if (BallInstance->GetShape().getPosition().x > WindowSizeX / 2)
 	{
-		if (BallY + Error < BotY - 30)
+		if (BallY + Error < BotY + BotPaddle->GetShape().getSize().y / 2)
 			BotPaddle->Move(DeltaTime, EMovementDirection::Up);
 
-		else if (BallY + Error > BotY + 30)
+		else if (BallY + Error > BotY + BotPaddle->GetShape().getSize().y / 2)
 			BotPaddle->Move(DeltaTime, EMovementDirection::Down);
 	}
 }
