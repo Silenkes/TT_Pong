@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.37301.10 d17.14
+VisualStudioVersion = 17.14.37301.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TT_Pong", "TT_Pong\TT_Pong.vcxproj", "{750769B8-196A-459A-9F07-CA95C7374605}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TT_Pong", "UnrealPongine\UnrealPongine.vcxproj", "{750769B8-196A-459A-9F07-CA95C7374605}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
